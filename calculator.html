@@ -1,0 +1,171 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="calculator.css" />
+  </head>
+  <h1 style="text-align: center; position: relative">Calculator</h1>
+  <div class="box">
+    <div class="display">
+      <input type="text" id="display" size="16" placeholder="0" />
+    </div>
+    <div class="keys">
+      <p>
+        <input type="button" class="button pink" value="DEL" onclick="del()" />
+        <input type="button" class="button pink" value="C" onclick="clr()" />
+      </p>
+      <p>
+        <input
+          type="button"
+          class="button black"
+          value="7"
+          onclick="valid('7')"
+        />
+        <input
+          type="button"
+          class="button black"
+          value="8"
+          onclick="valid('8')"
+        />
+        <input
+          type="button"
+          class="button black"
+          value="9"
+          onclick="valid('9')"
+        />
+        <input
+          type="button"
+          class="button orange"
+          value="*"
+          onclick="operation('*')"
+        />
+      </p>
+      <p>
+        <input
+          type="button"
+          class="button black"
+          value="4"
+          onclick="valid('4')"
+        />
+        <input
+          type="button"
+          class="button black"
+          value="5"
+          onclick="valid('5')"
+        />
+        <input
+          type="button"
+          class="button black"
+          value="6"
+          onclick="valid('6')"
+        />
+        <input
+          type="button"
+          class="button orange"
+          value="/"
+          onclick="operation('/')"
+        />
+      </p>
+      <p>
+        <input
+          type="button"
+          class="button black"
+          value="1"
+          onclick="valid('1')"
+        />
+        <input
+          type="button"
+          class="button black"
+          value="2"
+          onclick="valid('2')"
+        />
+        <input
+          type="button"
+          class="button black"
+          value="3"
+          onclick="valid('3')"
+        />
+        <input
+          type="button"
+          class="button orange"
+          value="-"
+          onclick="operation('-')"
+        />
+      </p>
+      <p>
+        <input type="button" class="button gray" value="=" onclick="end()" />
+        <input
+          type="button"
+          class="button gray"
+          value="0"
+          onclick="valid('0')"
+        />
+        <input
+          type="button"
+          class="button gray"
+          value="."
+          onclick="valid('.')"
+        />
+        <input
+          type="button"
+          class="button orange"
+          value="+"
+          onclick="operation('+')"
+        />
+      </p>
+    </div>
+  </div>
+  <script>
+    var display = document.getElementById("display");
+    var first_part = " ";
+    var second_part = " ";
+    var operator = " ";
+    var result = " ";
+    function valid(para) {
+      display.value += para;
+      first_part = display.value;
+      //console.log(first_part);
+    }
+    function operation(op) {
+      operator = op;
+      second_part = first_part;
+      first_part = " ";
+      display.value = " ";
+    }
+    function end() {
+      var f = Number(first_part);
+      var s = Number(second_part);
+      console.log(f, s);
+      var result = " ";
+      switch (operator) {
+        case "+":
+          result = s + f;
+          break;
+        case "-":
+          result = s - f;
+          break;
+        case "*":
+          result = s * f;
+          break;
+        case "/":
+          result = s / f;
+          break;
+        default:
+          result = " ";
+      }
+      display.value = result;
+      console.log(result);
+      first_part = " ";
+      second_part = " ";
+
+      //console.log(f);
+      //console.log(s);
+    }
+
+    function del() {
+      display.value = display.value.slice(0, -1);
+    }
+    function clr() {
+      display.value = "";
+      result = "";
+    }
+  </script>
+</html>
